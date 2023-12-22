@@ -1,10 +1,14 @@
 import { useState } from 'react'
+import {SubmitErrorHandler, SubmitHandler, useForm} from "react-hook-form";
+import {IPokemonForm} from "./types";
+import PokemonForm from "./components/PokemonForm";
 
 function App() {
+
   return (
-    <div>
-      <p>Welcome to Luna Edge technical interview</p>
-    </div>
+    <main>
+        <PokemonForm/>
+    </main>
   )
 }
 
