@@ -29,13 +29,14 @@ const PokemonForm = () => {
                 error={errors.firstName}
             />
             <CustomInput
-                label="lastName"
+                label="Last name"
                 name="lastName"
                 register={register}
                 required
                 pattern={/^[a-zA-Z]{2,12}$/}
                 error={errors.lastName}
             />
+
             <button type="submit">Submit</button>
         </form>
     );

@@ -3,15 +3,15 @@ import {CustomInputProps} from "../../types";
 const CustomInput = ({ label, name, register, required, pattern, error }: CustomInputProps) => {
 
     return (
-        <div>
+        <div className="w-[400px]">
             <label className="block font-bold">{label}</label>
             <input
-                className={`border-2 rounded-lg hover:border-violet focus:border-violet outline-none
+                className={`w-full border-2 rounded-lg hover:border-violet focus:border-violet outline-none
                 ${error ? 'border-red' : ''} ?`}
                 {...register(name, { required, pattern: pattern})} placeholder={label}
             />
             <p className={`${error ? 'text-red' : ''}`}>
-                {error?.type === 'pattern' ? 'Only a-z and A-Z, 2-12 characters' :
+                {error?.type === 'pattern' ? 'Only A-z characters, 2-12 length' :
                     'This field is required'}
             </p>
         </div>
