@@ -4,7 +4,7 @@ const CustomInput = ({ label, name, register, required, pattern, error }: Custom
 
     return (
         <div className="w-[400px]">
-            <label className="block font-bold">{label}</label>
+            <label className="block font-semibold">{label}</label>
             <input
                 className={`w-full border-2 rounded-lg hover:border-violet focus:border-violet outline-none
                 ${error ? 'border-red' : ''} ?`}

@@ -1,19 +1,15 @@
-import React, { useState } from "react";
 import Select from "react-select";
 import {MultiSelectorProps, PokemonI} from "../types";
 import { components } from "react-select";
 
 
-const MultiSelector = ({label, data }: MultiSelectorProps) => {
-    const [selectedOptions, setSelectedOptions] = useState<PokemonI[]>([]);
+const MultiSelector = ({label, data, selectedOptions, onChange }: MultiSelectorProps) => {
 
-    const handleChange = (selected:any) => {
-        if(selected.length <= 4) setSelectedOptions(selected);
-    };
+
 
     return (
         <div>
-            <p>{label}</p>
+            <p className="font-semibold">{label}</p>
             <Select
                 components={{ Menu }}
                 getOptionLabel={(option: PokemonI) => option.name}
@@ -21,8 +17,9 @@ const MultiSelector = ({label, data }: MultiSelectorProps) => {
                 options={data}
                 isMulti
                 value={selectedOptions}
-                onChange={handleChange}
+                onChange={onChange}
             />
+
         </div>
     );
 };

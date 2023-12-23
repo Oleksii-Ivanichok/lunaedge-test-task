@@ -1,6 +1,6 @@
 import {SubmitErrorHandler, SubmitHandler, useForm} from "react-hook-form";
 import CustomInput from "./UI/CustomInput";
-import {IPokemonForm} from "../types";
+import {IPokemonForm, PokemonI} from "../types";
 import MultiSelector from "./MultiSelector";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -13,6 +13,7 @@ const PokemonForm = () => {
     } = useForm<IPokemonForm>();
 
     const [pokemonsList, setPokemonsList] = useState()
+    const [selectedPokemons, setSelectedPokemons] = useState<PokemonI[]>([]);
 
     useEffect(() => {
         axios.get("https://pokeapi.co/api/v2/pokemon?limit=20").then((response) => {
@@ -28,6 +29,9 @@ const PokemonForm = () => {
         console.log(data);
     }
 
+    const addPokemon = (selected:any):void => {
+        if(selected.length <= 4) setSelectedPokemons(selected);
+    };
 
     return (
         <form onSubmit={handleSubmit(onSubmit, error)}>
@@ -53,6 +57,8 @@ const PokemonForm = () => {
                     <MultiSelector
                         label="Select 4 Pokemons"
                         data={pokemonsList}
+                        selectedOptions={selectedPokemons}
+                        onChange={addPokemon}
                     />
                     : ''
             }
