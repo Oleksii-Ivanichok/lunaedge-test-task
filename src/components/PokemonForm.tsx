@@ -15,7 +15,7 @@ const PokemonForm = () => {
     const [pokemonsList, setPokemonsList] = useState()
 
     useEffect(() => {
-        axios.get("https://pokeapi.co/api/v2/pokemon?limit=1302").then((response) => {
+        axios.get("https://pokeapi.co/api/v2/pokemon?limit=20").then((response) => {
             setPokemonsList(response.data.results);
         });
     }, [])
@@ -50,7 +50,10 @@ const PokemonForm = () => {
             {
                 pokemonsList
                     ?
-                    <MultiSelector data={pokemonsList}/>
+                    <MultiSelector
+                        label="Select 4 Pokemons"
+                        data={pokemonsList}
+                    />
                     : ''
             }
             <button type="submit">Submit</button>

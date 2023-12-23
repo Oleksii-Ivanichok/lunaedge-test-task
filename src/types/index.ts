@@ -13,3 +13,13 @@ export interface CustomInputProps {
     pattern?: RegExp;
     error? : any;
 }
+
+export interface MultiSelectorProps {
+    label: string;
+    data: PokemonI[];
+}
+
+export interface PokemonI{
+    name: string;
+    url: string;
+}
