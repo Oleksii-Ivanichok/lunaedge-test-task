@@ -19,7 +19,8 @@ export interface MultiSelectorProps {
     label: string;
     data: PokemonI[];
     selectedOptions: PokemonI[];
-    onChange(selected:any): void;
+    setSelectedOption: React.Dispatch<React.SetStateAction<PokemonI[]>>;
+    limit: number;
 }
 
 export interface PokemonI{

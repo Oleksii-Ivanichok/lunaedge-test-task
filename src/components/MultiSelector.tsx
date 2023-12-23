@@ -3,8 +3,24 @@ import {MultiSelectorProps, PokemonI} from "../types";
 import { components } from "react-select";
 
 
-const MultiSelector = ({label, data, selectedOptions, onChange }: MultiSelectorProps) => {
+const MultiSelector = ({label, data, selectedOptions, setSelectedOption, limit }: MultiSelectorProps) => {
 
+    const addOption = (selected:any):void => {
+        if(selected.length <= limit) setSelectedOption(selected);
+    };
+
+    const Menu = (props:any) => {
+        const optionSelectedLength = props.getValue().length || 0;
+        return (
+            <components.Menu {...props}>
+                {optionSelectedLength === limit ? (
+                    <div className="m-3">You can select only 4 Pokemon</div>
+                ) : (
+                    props.children
+                )}
+            </components.Menu>
+        );
+    };
 
 
     return (
@@ -17,7 +33,7 @@ const MultiSelector = ({label, data, selectedOptions, onChange }: MultiSelectorP
                 options={data}
                 isMulti
                 value={selectedOptions}
-                onChange={onChange}
+                onChange={addOption}
             />
 
         </div>
@@ -26,15 +42,4 @@ const MultiSelector = ({label, data, selectedOptions, onChange }: MultiSelectorP
 
 export default MultiSelector;
 
-const Menu = (props:any) => {
-    const optionSelectedLength = props.getValue().length || 0;
-    return (
-        <components.Menu {...props}>
-            {optionSelectedLength === 4 ? (
-                <div className="m-3">You can select only 4 Pokemon</div>
-            ) : (
-                props.children
-            )}
-        </components.Menu>
-    );
-};
+

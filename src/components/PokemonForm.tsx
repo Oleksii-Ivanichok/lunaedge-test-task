@@ -29,9 +29,6 @@ const PokemonForm = () => {
         console.log(data);
     }
 
-    const addPokemon = (selected:any):void => {
-        if(selected.length <= 4) setSelectedPokemons(selected);
-    };
 
     return (
         <form onSubmit={handleSubmit(onSubmit, error)}>
@@ -58,7 +55,8 @@ const PokemonForm = () => {
                         label="Select 4 Pokemons"
                         data={pokemonsList}
                         selectedOptions={selectedPokemons}
-                        onChange={addPokemon}
+                        setSelectedOption={setSelectedPokemons}
+                        limit={4}
                     />
                     : ''
             }
