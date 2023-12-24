@@ -1,4 +1,4 @@
-import {SubmitErrorHandler, SubmitHandler, useForm} from "react-hook-form";
+import {Controller, SubmitErrorHandler, SubmitHandler, useForm} from "react-hook-form";
 import CustomInput from "./UI/CustomInput";
 import {IPokemonForm, PokemonI} from "../types";
 import MultiSelector from "./MultiSelector";
@@ -8,6 +8,7 @@ import axios from "axios";
 const PokemonForm = () => {
     const {
         register,
+        control,
         handleSubmit,
         formState: { errors },
     } = useForm<IPokemonForm>();
@@ -51,13 +52,22 @@ const PokemonForm = () => {
             {
                 pokemonsList
                     ?
-                    <MultiSelector
-                        label="Select 4 Pokemons"
-                        data={pokemonsList}
-                        selectedOptions={selectedPokemons}
-                        setSelectedOption={setSelectedPokemons}
-                        limit={4}
+                    <Controller
+                        name="pokemons"
+                        render={({field}) => (
+                            <MultiSelector
+                                field={field}
+                                label="Select your team"
+                                data={pokemonsList}
+                                selectedOptions={selectedPokemons}
+                                setSelectedOption={setSelectedPokemons}
+                                limit={4}
+                            />
+                        )}
+                        control={control}
+
                     />
+
                     : ''
             }
             <button type="submit">Submit</button>

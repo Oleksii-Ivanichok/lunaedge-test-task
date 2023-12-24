@@ -1,9 +1,10 @@
-import {FieldValues, Path, UseFormRegister} from "react-hook-form";
+import {ControllerRenderProps, FieldValues, Path, UseFormRegister} from "react-hook-form";
 import React from "react";
 
 export interface IPokemonForm {
     firstName: string;
     lastName: string;
+    pokemons: PokemonI[];
 }
 
 export interface CustomInputProps {
@@ -16,6 +17,7 @@ export interface CustomInputProps {
 }
 
 export interface MultiSelectorProps {
+    field: any;
     label: string;
     data: PokemonI[];
     selectedOptions: PokemonI[];
