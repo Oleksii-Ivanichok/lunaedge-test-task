@@ -21,14 +21,14 @@ const PokemonForm = () => {
     const [modalActive, setModalActive] = useState(false)
     const [selectedPokemons, setSelectedPokemons] = useState<PokemonI[]>([]);
     useEffect(() => {
-        axios.get("https://pokeapi.co/api/v2/pokemon?limit=20").then((response) => {
+        axios.get("https://pokeapi.co/api/v2/pokemon?limit=1302").then((response) => {
             setFetchedPokemons(response.data.results);
         });
     }, [])
 
     const onSubmit: SubmitHandler<IPokemonForm> = (data) => {
         const pokemons = getValues().pokemons;
-        if(pokemons.length === 4){
+        if (pokemons.length === 4) {
             setSelectedPokemons(pokemons);
             setModalActive(true)
         }
@@ -39,7 +39,7 @@ const PokemonForm = () => {
     }
     console.log(selectedPokemons)
     return (
-        <form onSubmit={handleSubmit(onSubmit, error)}>
+        <form onSubmit={handleSubmit(onSubmit, error)} className="text-xl">
             <CustomInput
                 label="First name"
                 name="firstName"
@@ -76,15 +76,14 @@ const PokemonForm = () => {
                     />
                     : ''
             }
-            <button type="submit" className="bg-violet text-white p-3 rounded-md">Submit</button>
+            <button type="submit" className="bg-violet text-white p-3 rounded-md mt-2">Submit</button>
             <Modal active={modalActive} setActive={setModalActive}>
-                <>
-                    <div className="flex">
-                    {selectedPokemons.map((item)=>
+                <h2 className="text-center text-2xl font-bold">Your Team</h2>
+                <div className="flex gap-4 mt-3">
+                    {selectedPokemons.map((item) =>
                         <PokemonSprite name={item.name} url={item.url} key={item.url}/>
                     )}
-                    </div>
-                </>
+                </div>
             </Modal>
         </form>
     );

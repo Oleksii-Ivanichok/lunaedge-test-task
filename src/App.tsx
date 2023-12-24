@@ -3,7 +3,7 @@ import PokemonForm from "./components/PokemonForm";
 function App() {
 
   return (
-    <main>
+    <main className="flex items-center justify-center h-screen">
         <PokemonForm/>
     </main>
   )

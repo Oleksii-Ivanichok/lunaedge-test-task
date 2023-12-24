@@ -11,7 +11,7 @@ const PokemonSprite = ({ name, url }:PokemonSpriteProps) => {
     }, []);
 
     return (
-        <div>
+        <div className="text-center">
             {name}
             {fetchedSprite ? (
                 <img src={fetchedSprite} alt="sprite" />
