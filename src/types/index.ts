@@ -1,5 +1,5 @@
 import {ControllerRenderProps, FieldValues, Path, UseFormRegister} from "react-hook-form";
-import React from "react";
+import React, {Dispatch, ReactNode, SetStateAction} from "react";
 
 export interface IPokemonForm {
     firstName: string;
@@ -25,6 +25,17 @@ export interface MultiSelectorProps {
 }
 
 export interface PokemonI{
+    name: string;
+    url: string;
+}
+
+export interface ModalProps{
+    active: boolean;
+    setActive: Dispatch<SetStateAction<boolean>>;
+    children: string | JSX.Element | JSX.Element[]
+}
+
+export interface PokemonSpriteProps{
     name: string;
     url: string;
 }

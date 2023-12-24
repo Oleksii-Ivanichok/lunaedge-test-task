@@ -4,32 +4,40 @@ import {IPokemonForm, PokemonI} from "../types";
 import MultiSelector from "./MultiSelector";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import Modal from "./UI/Modal";
+import PokemonSprite from "./PokemonSprite";
 
 const PokemonForm = () => {
     const {
         register,
         control,
         handleSubmit,
+        getValues,
         formState: {errors},
     } = useForm<IPokemonForm>();
 
-    const [pokemonsList, setPokemonsList] = useState()
-    const [pokemonError, setPokemonError] = useState(false);
+    const [fetchedPokemons, setFetchedPokemons] = useState([])
+    const [pokemonSelectorError, setPokemonSelectorError] = useState(false);
+    const [modalActive, setModalActive] = useState(false)
+    const [selectedPokemons, setSelectedPokemons] = useState<PokemonI[]>([]);
     useEffect(() => {
         axios.get("https://pokeapi.co/api/v2/pokemon?limit=20").then((response) => {
-            setPokemonsList(response.data.results);
+            setFetchedPokemons(response.data.results);
         });
     }, [])
 
     const onSubmit: SubmitHandler<IPokemonForm> = (data) => {
-        console.log(data);
-
+        const pokemons = getValues().pokemons;
+        if(pokemons.length === 4){
+            setSelectedPokemons(pokemons);
+            setModalActive(true)
+        }
     };
 
     const error: SubmitErrorHandler<IPokemonForm> = (data) => {
-        setPokemonError(true);
+        setPokemonSelectorError(true);
     }
-
+    console.log(selectedPokemons)
     return (
         <form onSubmit={handleSubmit(onSubmit, error)}>
             <CustomInput
@@ -49,7 +57,7 @@ const PokemonForm = () => {
                 error={errors.lastName}
             />
             {
-                pokemonsList
+                fetchedPokemons
                     ?
                     <Controller
                         name="pokemons"
@@ -58,8 +66,8 @@ const PokemonForm = () => {
                             <MultiSelector
                                 field={field}
                                 label="Select your team"
-                                data={pokemonsList}
-                                error={pokemonError}
+                                data={fetchedPokemons}
+                                error={pokemonSelectorError}
                                 limit={4}
                             />
                         }
@@ -69,6 +77,15 @@ const PokemonForm = () => {
                     : ''
             }
             <button type="submit" className="bg-violet text-white p-3 rounded-md">Submit</button>
+            <Modal active={modalActive} setActive={setModalActive}>
+                <>
+                    <div className="flex">
+                    {selectedPokemons.map((item)=>
+                        <PokemonSprite name={item.name} url={item.url} key={item.url}/>
+                    )}
+                    </div>
+                </>
+            </Modal>
         </form>
     );
 };
