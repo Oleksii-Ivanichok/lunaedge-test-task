@@ -3,11 +3,8 @@ import {MultiSelectorProps, PokemonI} from "../types";
 import {components} from "react-select";
 
 
-const MultiSelector = ({field, label, data, selectedOptions, setSelectedOption, limit}: MultiSelectorProps) => {
+const MultiSelector = ({field, label, data, limit}: MultiSelectorProps) => {
 
-    const addOption = (selected: any): void => {
-        if (selected.length <= limit) setSelectedOption(selected);
-    };
 
     const Menu = (props: any) => {
         const optionSelectedLength = props.getValue().length || 0;
@@ -22,7 +19,7 @@ const MultiSelector = ({field, label, data, selectedOptions, setSelectedOption, 
         );
     };
 
-    console.log(field);
+
     return (
         <div>
             <p className="font-semibold">{label}</p>
@@ -33,16 +30,11 @@ const MultiSelector = ({field, label, data, selectedOptions, setSelectedOption, 
                 getOptionValue={(option: PokemonI) => option.name}
                 options={data}
                 isMulti
-                value={selectedOptions}
-                onChange={addOption}
+                onKeyDown={e => {
+                    if (e.key === "Enter") e.preventDefault();
+                }}
             />
-            {
-                selectedOptions.length < limit
-                    ?
-                <p className="">You must select 4 Pokemons</p>
-                    :
-                    ''
-            }
+            <p className="">You must select 4 Pokemons</p>
 
         </div>
     );

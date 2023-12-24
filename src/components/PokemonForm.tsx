@@ -54,7 +54,8 @@ const PokemonForm = () => {
                     ?
                     <Controller
                         name="pokemons"
-                        render={({field}) => (
+                        rules={{ required: true }}
+                        render={({field}) =>
                             <MultiSelector
                                 field={field}
                                 label="Select your team"
@@ -63,7 +64,7 @@ const PokemonForm = () => {
                                 setSelectedOption={setSelectedPokemons}
                                 limit={4}
                             />
-                        )}
+                        }
                         control={control}
 
                     />
