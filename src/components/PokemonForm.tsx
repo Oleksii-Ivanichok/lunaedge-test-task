@@ -10,12 +10,12 @@ const PokemonForm = () => {
         register,
         control,
         handleSubmit,
-        formState: { errors },
+        formState: {errors},
     } = useForm<IPokemonForm>();
 
     const [pokemonsList, setPokemonsList] = useState()
     const [selectedPokemons, setSelectedPokemons] = useState<PokemonI[]>([]);
-
+    const [pokemonError, setPokemonError] = useState(false);
     useEffect(() => {
         axios.get("https://pokeapi.co/api/v2/pokemon?limit=20").then((response) => {
             setPokemonsList(response.data.results);
@@ -24,10 +24,13 @@ const PokemonForm = () => {
 
     const onSubmit: SubmitHandler<IPokemonForm> = (data) => {
         console.log(data);
+        if (data.pokemons.length < 4) {
+            setPokemonError(true);
+        }
     };
 
     const error: SubmitErrorHandler<IPokemonForm> = (data) => {
-        console.log(data);
+        setPokemonError(true);
     }
 
 
@@ -54,14 +57,13 @@ const PokemonForm = () => {
                     ?
                     <Controller
                         name="pokemons"
-                        rules={{ required: true }}
+                        rules={{required: true}}
                         render={({field}) =>
                             <MultiSelector
                                 field={field}
                                 label="Select your team"
                                 data={pokemonsList}
-                                selectedOptions={selectedPokemons}
-                                setSelectedOption={setSelectedPokemons}
+                                error={pokemonError}
                                 limit={4}
                             />
                         }

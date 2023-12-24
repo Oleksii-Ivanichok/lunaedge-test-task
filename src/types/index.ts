@@ -20,8 +20,7 @@ export interface MultiSelectorProps {
     field: any;
     label: string;
     data: PokemonI[];
-    selectedOptions: PokemonI[];
-    setSelectedOption: React.Dispatch<React.SetStateAction<PokemonI[]>>;
+    error: boolean;
     limit: number;
 }
 
