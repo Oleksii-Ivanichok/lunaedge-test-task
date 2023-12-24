@@ -28,7 +28,7 @@ const MultiSelector = ({field, label, data, error, limit}: MultiSelectorProps) =
     };
 
     return (
-        <div>
+        <div className="w-[400px]">
             <p className="font-semibold">{label}</p>
             <Select
                 {...field}

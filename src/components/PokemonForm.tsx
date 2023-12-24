@@ -14,7 +14,6 @@ const PokemonForm = () => {
     } = useForm<IPokemonForm>();
 
     const [pokemonsList, setPokemonsList] = useState()
-    const [selectedPokemons, setSelectedPokemons] = useState<PokemonI[]>([]);
     const [pokemonError, setPokemonError] = useState(false);
     useEffect(() => {
         axios.get("https://pokeapi.co/api/v2/pokemon?limit=20").then((response) => {
@@ -24,15 +23,12 @@ const PokemonForm = () => {
 
     const onSubmit: SubmitHandler<IPokemonForm> = (data) => {
         console.log(data);
-        if (data.pokemons.length < 4) {
-            setPokemonError(true);
-        }
+
     };
 
     const error: SubmitErrorHandler<IPokemonForm> = (data) => {
         setPokemonError(true);
     }
-
 
     return (
         <form onSubmit={handleSubmit(onSubmit, error)}>
@@ -70,10 +66,9 @@ const PokemonForm = () => {
                         control={control}
 
                     />
-
                     : ''
             }
-            <button type="submit">Submit</button>
+            <button type="submit" className="bg-violet text-white p-3 rounded-md">Submit</button>
         </form>
     );
 };
