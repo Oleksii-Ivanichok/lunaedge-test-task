@@ -7,7 +7,7 @@ const CustomInput = ({ label, name, register, required, pattern, error }: Custom
             <label className="block font-semibold">{label}</label>
             <input
                 className={`w-full border-2 rounded-lg hover:border-violet focus:border-violet outline-none
-                ${error ? 'border-red' : ''} ?`}
+                ${error ? 'border-red' : ''}`}
                 {...register(name, { required, pattern: pattern})} placeholder={label}
             />
             <p className={`${error ? 'text-red' : ''}`}>

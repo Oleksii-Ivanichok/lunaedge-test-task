@@ -79,7 +79,7 @@ const PokemonForm = () => {
             <button type="submit" className="bg-violet text-white p-3 rounded-md mt-2">Submit</button>
             <Modal active={modalActive} setActive={setModalActive}>
                 <h2 className="text-center text-2xl font-bold">Your Team</h2>
-                <div className="flex gap-4 mt-3">
+                <div className="flex gap-10 my-5">
                     {selectedPokemons.map((item) =>
                         <PokemonSprite name={item.name} url={item.url} key={item.url}/>
                     )}
