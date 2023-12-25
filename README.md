@@ -1,3 +1,7 @@
+
+- Run app: <code>yarn vite</code>
+- Run storybook: <code>yarn storybook</code>
+
 # Luna Edge technical interview
 ## Basic commands
 - Run app: <code>yarn vite</code>
