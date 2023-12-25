@@ -3,6 +3,9 @@ import {MultiSelectorProps, PokemonI} from "../types";
 import {components} from "react-select";
 import {useEffect, useState} from "react";
 
+type Props = {
+    variant: 'green' | 'yellow' | 'red'
+}
 
 const MultiSelector = ({field, label, data, error, limit}: MultiSelectorProps) => {
     const [pokemonError, setPokemonError] = useState(true)
@@ -28,7 +31,7 @@ const MultiSelector = ({field, label, data, error, limit}: MultiSelectorProps) =
     };
 
     return (
-        <div className="w-[400px]">
+        <div className="w-[400px] mt-2">
             <p className="font-semibold">{label}</p>
             <Select
                 {...field}
@@ -40,6 +43,28 @@ const MultiSelector = ({field, label, data, error, limit}: MultiSelectorProps) =
                 onKeyDown={e => {
                     if (e.key === "Enter") e.preventDefault();
                 }}
+                styles={{
+                    control: (styles, state) => ({
+                        ...styles,
+                        borderColor: state.isFocused ? '#4B2EBE' : '',
+                    }),
+                    dropdownIndicator: (styles, state) => ({
+                        ...styles,
+                        transition: "all .2s ease",
+                        transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : null
+                    }),
+                    multiValue: (styles) => ({
+                        ...styles,
+                        background: "gray-300",
+                        "border-radius": "20px"
+                    }),
+                    multiValueRemove: (styles) => ({
+                        ...styles,
+                        color: "gray"
+                    }),
+                }}
+                className={`w-full border-2 rounded-lg hover:border-violet focus:border-violet outline-none
+                ${error && pokemonError ? 'border-red' : ''}`}
             />
             <p className={`${error && pokemonError?'text-red': ''}`}>You must select 4 Pokemons</p>
 
