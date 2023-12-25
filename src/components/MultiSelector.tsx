@@ -31,7 +31,7 @@ const MultiSelector = ({field, label, data, error, limit}: MultiSelectorProps) =
     };
 
     return (
-        <div className="w-[400px] mt-2">
+        <div className="mt-2">
             <p className="font-semibold">{label}</p>
             <Select
                 {...field}

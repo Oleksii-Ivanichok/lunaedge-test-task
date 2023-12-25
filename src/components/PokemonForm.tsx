@@ -39,7 +39,7 @@ const PokemonForm = () => {
     }
     console.log(selectedPokemons)
     return (
-        <form onSubmit={handleSubmit(onSubmit, error)} className="text-xl">
+        <form onSubmit={handleSubmit(onSubmit, error)} className="text-xl w-[550px]">
             <CustomInput
                 label="First name"
                 name="firstName"
