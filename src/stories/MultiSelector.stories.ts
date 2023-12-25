@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import MultiSelector from "./MultiSelector";
+import MultiSelector from "../components/MultiSelector";
 
 const meta = {
     title: 'Component/MultiSelector',
@@ -12,73 +12,59 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>;
 
+const dataExample = [
+    {
+        "name": "bulbasaur",
+        "url": "https://pokeapi.co/api/v2/pokemon/1/"
+    },
+    {
+        "name": "venusaur",
+        "url": "https://pokeapi.co/api/v2/pokemon/3/"
+    },
+    {
+        "name": "ivysaur",
+        "url": "https://pokeapi.co/api/v2/pokemon/2/"
+    },
+    {
+        "name": "charizard",
+        "url": "https://pokeapi.co/api/v2/pokemon/6/"
+    },
+    {
+        "name": "mddaerqw",
+        "url": "https://pokeapi.co/api/v2/pokemon/6/"
+    },
+    {
+        "name": "dfdfdd",
+        "url": "https://pokeapi.co/api/v2/pokemon/6/"
+    }
+]
 export const Default: Story = {
     args: {
         field: [],
         label: "MultiSelector",
-        data: [
-            {
-                "name": "bulbasaur",
-                "url": "https://pokeapi.co/api/v2/pokemon/1/"
-            },
-            {
-                "name": "venusaur",
-                "url": "https://pokeapi.co/api/v2/pokemon/3/"
-            },
-            {
-                "name": "ivysaur",
-                "url": "https://pokeapi.co/api/v2/pokemon/2/"
-            },
-            {
-                "name": "charizard",
-                "url": "https://pokeapi.co/api/v2/pokemon/6/"
-            },
-            {
-                "name": "mddaerqw",
-                "url": "https://pokeapi.co/api/v2/pokemon/6/"
-            },
-            {
-                "name": "dfdfdd",
-                "url": "https://pokeapi.co/api/v2/pokemon/6/"
-            }
-        ],
+        data: dataExample,
         error: false,
         limit: 4
     },
 };
 
-export const Width: Story = {
+export const Error: Story = {
     args: {
         field: [],
-        label: "MultiSelector",
-        data: [
-            {
-                "name": "bulbasaur",
-                "url": "https://pokeapi.co/api/v2/pokemon/1/"
-            },
-            {
-                "name": "venusaur",
-                "url": "https://pokeapi.co/api/v2/pokemon/3/"
-            },
-            {
-                "name": "ivysaur",
-                "url": "https://pokeapi.co/api/v2/pokemon/2/"
-            },
-            {
-                "name": "charizard",
-                "url": "https://pokeapi.co/api/v2/pokemon/6/"
-            },
-            {
-                "name": "mddaerqw",
-                "url": "https://pokeapi.co/api/v2/pokemon/6/"
-            },
-            {
-                "name": "dfdfdd",
-                "url": "https://pokeapi.co/api/v2/pokemon/6/"
-            }
-        ],
+        label: "Error",
+        data: dataExample,
+        error: true,
+        limit: 100
+    },
+};
+
+export const NoData: Story = {
+    args: {
+        field: [],
+        label: "NoData",
+        data: [],
         error: false,
-        limit: 4
+        limit: 0
     },
 };
 

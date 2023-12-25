@@ -22,7 +22,7 @@ const MultiSelector = ({field, label, data, error, limit}: MultiSelectorProps) =
         return (
             <components.Menu {...props}>
                 {optionSelectedLength === limit ? (
-                    <div className="m-3">You can select only 4 Pokemon</div>
+                    <div className="m-3">You can select only {limit} Pokemon</div>
                 ) : (
                     props.children
                 )}
@@ -66,7 +66,7 @@ const MultiSelector = ({field, label, data, error, limit}: MultiSelectorProps) =
                 className={`w-full border-2 rounded-lg hover:border-violet focus:border-violet outline-none
                 ${error && pokemonError ? 'border-red' : ''}`}
             />
-            <p className={`${error && pokemonError?'text-red': ''}`}>You must select 4 Pokemons</p>
+            <p className={`${error && pokemonError?'text-red': ''}`}>You must select {limit} Pokemons</p>
 
         </div>
     );
